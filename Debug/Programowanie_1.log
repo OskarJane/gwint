@@ -1,0 +1,9 @@
+﻿  GameLoc_Game.cpp
+D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(9,11): warning C4309: "inicjowanie": obcięcie stałej wartości
+D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(10,11): warning C4309: "inicjowanie": obcięcie stałej wartości
+D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(11,11): warning C4309: "inicjowanie": obcięcie stałej wartości
+D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(12,11): warning C4309: "inicjowanie": obcięcie stałej wartości
+D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(14,19): warning C4309: "inicjowanie": obcięcie stałej wartości
+D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(15,18): warning C4309: "inicjowanie": obcięcie stałej wartości
+D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(17,19): warning C4309: "inicjowanie": obcięcie stałej wartości
+  Programowanie_1.vcxproj -> D:\Programowanie_1\Programowanie_1\Debug\Programowanie_1.exe
