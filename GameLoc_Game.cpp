@@ -55,12 +55,12 @@ cards row[12] =
 
 row_board szereg[6]=
 {
-	row[12],
-	row[12],
-	row[12],
-	row[12],
-	row[12],
-	row[12]
+	{row[12],0},
+	{row[12],0},
+	{row[12],0},
+	{row[12],0},
+	{row[12],0},
+	{row[12],0}
 };
 
 
@@ -268,7 +268,7 @@ void rysuj_karty(int pointer)
 			cout << " |";
 			if (Hand[i].card_type == 1)
 			{
-				cout << "Stwur";
+				cout << "Stwor";
 			}
 			else
 			{
@@ -516,11 +516,11 @@ int game_location(int pointer)
 void Play_card(int n)
 {
 	Hand[n].card_id = 0;
-
+	int liczba = szereg [Hand[n].card_row].actual_id;
 	//wstawienie karty
-	szereg[Hand[n].card_row].row_cards[n].card_id = 1;
-	szereg[Hand[n].card_row].row_cards[n].card_power = Hand[n].card_power;
-	
+	szereg[Hand[n].card_row].row_cards[liczba].card_id = 1;
+	szereg[Hand[n].card_row].row_cards[liczba].card_power = Hand[n].card_power;
+	szereg[Hand[n].card_row].actual_id++;
 }
 
 int suma_sil(int szereg_output,int card_amount)

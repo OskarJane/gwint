@@ -29,6 +29,7 @@ struct cards
 struct row_board
 {
 	cards row_cards[12];
+	int actual_id;
 };
 
 void GameLoc_Game();
