@@ -15,7 +15,7 @@ void Play_Music();
 
 int main()
 {
-	Play_Music();
+	//Play_Music();
 	if(GameLoc_MENU()==-1)
 	{
 		return 0;

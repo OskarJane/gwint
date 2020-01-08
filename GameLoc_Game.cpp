@@ -1,6 +1,7 @@
 ﻿#include<iostream>
 #include <windows.h>
 #include<conio.h>
+#include <iomanip>
 
 #include"GameLoc_Game.h"
 
@@ -33,18 +34,8 @@ cards Hand[12] =
 	{11,1,3,1},
 	{12,1,1,3}
 };
-cards row[20] =
+cards row[12] =
 {
-	{0,0,0,0},
-	{0,0,0,0},
-	{0,0,0,0},
-	{0,0,0,0},
-
-	{0,0,0,0},
-	{0,0,0,0},
-	{0,0,0,0},
-	{0,0,0,0},
-
 	{0,0,0,0},
 	{0,0,0,0},
 	{0,0,0,0},
@@ -59,13 +50,17 @@ cards row[20] =
 	{0,0,0,0},
 	{0,0,0,0},
 	{0,0,0,0}
+
 };
 
-row_board szereg[3]=
+row_board szereg[6]=
 {
-	row[20],
-	row[20],
-	row[20]
+	row[12],
+	row[12],
+	row[12],
+	row[12],
+	row[12],
+	row[12]
 };
 
 
@@ -115,17 +110,28 @@ void game_render(int pointer)
 	SetConsoleTextAttribute(hConsole, 7);
 
 
-	for (int i = 0;i < 25;i++)
+	for (int i = 0;i < 8;i++)
 	{
 		cout <<endl;
 	}
-	
+	for (int i = 6;i >= 4;i--)
+	{
+		rysuj_szereg(i);
+	}
+
+	cout << endl;
+
+	SetConsoleTextAttribute(hConsole, 120);
 	for (int i = 0;i < 120;i++)
 	{
 		cout <<dwieLinia;
 	}
 	cout << endl;//Polowa stolu
-	for (int i = 0;i < 3;i++)
+	SetConsoleTextAttribute(hConsole, 7);
+
+	cout << endl;
+
+	for (int i = 1;i <= 3;i++)
 	{
 		rysuj_szereg(i);
 	}
@@ -344,34 +350,35 @@ void rysuj_karty(int pointer)
 			SetConsoleTextAttribute(hConsole, default_color_card);
 		}
 
-		if (Hand[i].card_id == 0)
-		{
-			cout << "        ";
-		}
-		else
-		{
-			cout << "  " << "  " << i + 1 << "   ";
-		}
+		
+			cout << " " << "  " <<setw(2)<< i + 1 << "   ";
+		
 	}
 	cout << endl;
 }
 
-void rysuj_szereg(int szereg)
+void rysuj_szereg(int szereg_output)
 {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	string szereg_nazwa = "";
+	int card_amount = 12;
 	//line_1
-	cout << "\t\t";
+	cout << "\t\t\t";
 	cout<< lg;
-	for (int i = 0;i < 80;i++)
+	for (int i = 0;i < card_amount*4;i++)
 	{
 		cout << dwieLinia;
 	}
-	cout << pg << endl;
+	cout << pg;
+	//right banner_1
+	cout << "  " << lg << dwieLinia << dwieLinia << dwieLinia<< dwieLinia<< dwieLinia << pg << endl;
 	//line_2
-	cout << "\t\t";
+	cout << "\t\t\t";
 	cout << VdwieLinia;
-	for (int i = 0;i < 20;i++)
+	for (int i = 0;i < card_amount;i++)
 	{
-		if (row[i].card_id == 0)
+		if (szereg[szereg_output].row_cards[i].card_id == 0)
 		{
 			cout << "    ";
 		}
@@ -380,28 +387,60 @@ void rysuj_szereg(int szereg)
 			cout << " " << lg << jednaLinia << pg;
 		}
 	}
-	cout << VdwieLinia<<endl;
-	//line_3
-	cout << "\t\t";
 	cout << VdwieLinia;
-	for (int i = 0;i < 20;i++)
+	//right banner_2
+	switch (szereg_output)
 	{
-		if (row[i].card_id == 0)
+	case 1:
+		szereg_nazwa = "MEELE";
+		break;
+	case 2:
+		szereg_nazwa = "RANGE";
+		break;
+	case 3:
+		szereg_nazwa = "SIEGE";
+		break;
+	case 4:
+		szereg_nazwa = "MEELE";
+		break;
+	case 5:
+		szereg_nazwa = "RANGE";
+		break;
+	case 6:
+		szereg_nazwa = "SIEGE";
+		break;
+	default:
+		szereg_nazwa = "     ";
+		break;
+	}
+	cout << "  " << VdwieLinia << szereg_nazwa << VdwieLinia << endl;
+	//line_3
+	cout << "\t\t\t";
+	cout << VdwieLinia;
+	for (int i = 0;i < card_amount;i++)
+	{
+		if (szereg[szereg_output].row_cards[i].card_id == 0)
 		{
 			cout << "    ";
 		}
 		else
 		{
-			cout << " " << VjednaLinia << row[i].card_power << VjednaLinia;
+			cout << " " << VjednaLinia << szereg[szereg_output].row_cards[i].card_power<< VjednaLinia;
 		}
 	}
-	cout << VdwieLinia << endl;
-	//line_4
-	cout << "\t\t";
 	cout << VdwieLinia;
-	for (int i = 0;i < 20;i++)
+	//right banner_3
+	cout << "  " << VdwieLinia << " ";
+	SetConsoleTextAttribute(hConsole, 13);
+		cout << setw(3) << suma_sil(szereg_output, card_amount);
+	SetConsoleTextAttribute(hConsole, 7);
+	cout<< " " << VdwieLinia << endl;
+	//line_4
+	cout << "\t\t\t";
+	cout << VdwieLinia;
+	for (int i = 0;i < card_amount;i++)
 	{
-		if (row[i].card_id == 0)
+		if (szereg[szereg_output].row_cards[i].card_id == 0)
 		{
 			cout << "    ";
 		}
@@ -410,15 +449,19 @@ void rysuj_szereg(int szereg)
 			cout << " " << ld << jednaLinia << pd;
 		}
 	}
-	cout << VdwieLinia << endl;
+	cout << VdwieLinia;
+	//right banner_4
+	cout << "  " << VdwieLinia << " Suma" << VdwieLinia << endl;
 	//line_5
-	cout << "\t\t";
+	cout << "\t\t\t";
 	cout << ld;
-	for (int i = 0;i < 80;i++)
+	for (int i = 0;i < card_amount*4;i++)
 	{
 		cout << dwieLinia;
 	}
-	cout << pd << endl;
+	cout << pd;
+	//right banner_5
+	cout <<"  "<< ld << dwieLinia << dwieLinia << dwieLinia << dwieLinia << dwieLinia<< pd<< endl;
 }
 
 int game_location(int pointer)
@@ -474,7 +517,18 @@ void Play_card(int n)
 {
 	Hand[n].card_id = 0;
 
-	//szereg[0].row_cards[n].card_id = 1;
-	row[n].card_id = 1;
-	row[n].card_power = Hand[n].card_power;
+	//wstawienie karty
+	szereg[Hand[n].card_row].row_cards[n].card_id = 1;
+	szereg[Hand[n].card_row].row_cards[n].card_power = Hand[n].card_power;
+	
+}
+
+int suma_sil(int szereg_output,int card_amount)
+{
+	int suma = 0;
+	for (int i = 0;i < card_amount;i++)
+	{
+		suma = suma + szereg[szereg_output].row_cards[i].card_power;
+	}
+	return suma;
 }

@@ -28,7 +28,7 @@ struct cards
 
 struct row_board
 {
-	cards row_cards[20];
+	cards row_cards[12];
 };
 
 void GameLoc_Game();
@@ -39,6 +39,7 @@ int game_location(int);
 //game_render
 void rysuj_karty(int);
 void rysuj_szereg(int);
+int suma_sil(int,int);
 
 //game_mechanics
 void Play_card(int);
