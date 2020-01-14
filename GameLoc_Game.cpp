@@ -4,9 +4,12 @@
 #include <iomanip>
 
 #include"GameLoc_Game.h"
+#include"Game_ai.h"
+#include"END_screens.h"
 
 using namespace std;
 
+#pragma region znaki_zmienne.
 char lg = 201;//╔
 char pg = 187;//╗
 char ld = 200;//╚
@@ -16,8 +19,31 @@ char jednaLinia = 196;//-
 char dwieLinia = 205;//=
 char VjednaLinia = 124;//|
 char VdwieLinia = 186;//|
+#pragma endregion
+
+#pragma region kolory.
+int pointed_color_card = 11;
+int default_color_card = 14;
+#pragma endregion
 
 cards Hand[12] =
+{
+	{1,1,1,1},
+	{2,1,3,2},
+	{3,1,5,3},
+	{4,1,7,1},
+
+	{5,1,5,2},
+	{6,1,4,1},
+	{7,1,3,2},
+	{8,1,2,3},
+
+	{9,1,8,2},
+	{10,1,5,3},
+	{11,1,3,1},
+	{12,1,1,3}
+};
+cards Hand_ai[12] =
 {
 	{1,1,1,1},
 	{2,1,3,2},
@@ -155,8 +181,6 @@ void game_render(int pointer)
 void rysuj_karty(int pointer)
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	int pointed_color_card = 11;
-	int default_color_card = 14;
 
 	//rysuj karty
 	int card_amount = 12;//placeholder- to ma byc pobierane ze struktury
@@ -164,107 +188,142 @@ void rysuj_karty(int pointer)
 	cout << "\t";
 	for (int i = 0;i < card_amount;i++)//top
 	{
-		
-		if (pointer == i + 1)
-		{
-			SetConsoleTextAttribute(hConsole, pointed_color_card);
-		}
-		else
-		{
-			SetConsoleTextAttribute(hConsole, default_color_card);
-		}
-
-		if (Hand[i].card_id == 0)
-		{
-			cout << "        ";
-		}
-		else
-		{
-			cout << " " << lg << "-----" << pg;
-		}
+		draw_card(1, pointer, i);
 	}
+	//pass
+	draw_pass(1, pointer);	
 	cout << endl<<"\t";
 	/*middle*/
 	for (int i = 0;i < card_amount;i++)
 	{
-		if (pointer == i + 1)
-		{
-			SetConsoleTextAttribute(hConsole, pointed_color_card);
-		}
-		else
-		{
-			SetConsoleTextAttribute(hConsole, default_color_card);
-		}
-
-		if (Hand[i].card_id == 0)
-		{
-			cout << "        ";
-		}
-		else
-		{
-			cout << " |     |";
-		}
+		draw_card(2, pointer, i);
 	}
+	//pass
+	draw_pass(2, pointer);
+
 	cout << endl << "\t";
 	for (int i = 0;i < card_amount;i++)
 	{
-		if (pointer == i + 1)
-		{
-			SetConsoleTextAttribute(hConsole, pointed_color_card);
-		}
-		else
-		{
-			SetConsoleTextAttribute(hConsole, default_color_card);
-		}
+		draw_card(3, pointer, i);
+	}
+	draw_pass(3, pointer);
 
-		if (Hand[i].card_id == 0)
-		{
-			cout << "        ";
-		}
-		else
-		{
+	cout << endl << "\t";
+
+	for (int i = 0;i < card_amount;i++)
+	{
+		draw_card(4, pointer,i);
+	}
+	//pass
+	draw_pass(4, pointer);
+
+	cout << endl << "\t";
+	for (int i = 0;i < card_amount;i++)
+	{
+		draw_card(5, pointer, i);
+	}
+	//pass
+	draw_pass(5, pointer);
+
+	cout << endl << "\t";
+	for (int i = 0;i < card_amount;i++)
+	{
+		draw_card(6, pointer, i);
+	}
+	draw_pass(6, pointer);
+	cout << endl << "\t";
+	/*middle end*/
+	
+
+	for (int i = 0;i < card_amount;i++)//id karty
+	{
+		draw_card(7, pointer, i);
+	}
+	draw_pass(7, pointer);
+	cout << endl << "\t";
+
+
+	for (int i = 0;i < card_amount;i++)//bottom
+	{
+		draw_card(8, pointer, i);	
+	}
+	draw_pass(8, pointer);
+	cout << endl;
+}
+#pragma region under_rysujkarty.
+void draw_pass(int linia,int pointer)
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (pointer == 13)
+	{
+		SetConsoleTextAttribute(hConsole, pointed_color_card);
+	}
+	else
+	{
+		SetConsoleTextAttribute(hConsole, default_color_card);
+	}
+
+	switch (linia)
+	{
+	case 1:
+		cout << " " << lg << "----" << pg;
+		break;
+	case 2:
+		cout << " " << "|    |";
+		break;
+	case 3:
+		cout << " " << "|    |";
+		break;
+	case 4:
+		cout << " " << "|PASS|";
+		break;
+	case 5:
+		cout << " " << "|    |";
+		break;
+	case 6:
+		cout << " " << "|    |";
+		break;
+	case 7:
+		cout << " " << ld << "----" << pd;
+		break;
+	case 8:
+		cout << "  " << "PASS";
+		break;
+	}
+}
+void draw_card(int linia, int pointer,int i)
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (pointer == i + 1)
+	{
+		SetConsoleTextAttribute(hConsole, pointed_color_card);
+	}
+	else
+	{
+		SetConsoleTextAttribute(hConsole, default_color_card);
+	}
+
+	if (Hand[i].card_id == 0 && linia!=8)
+	{
+		cout << "        ";
+	}
+	else
+	{
+	switch (linia)
+	{
+	case 1:
+			cout << " " << lg << "-----" << pg;
+		break;
+	case 2:
+			cout << " |     |";
+		break;
+	case 3:
 			cout << " |  " << Hand[i].card_power << "  |";
-		}
-	}
-	cout << endl << "\t";
-	for (int i = 0;i < card_amount;i++)
-	{
-		if (pointer == i + 1)
-		{
-			SetConsoleTextAttribute(hConsole, pointed_color_card);
-		}
-		else
-		{
-			SetConsoleTextAttribute(hConsole, default_color_card);
-		}
-
-		if (Hand[i].card_id == 0)
-		{
-			cout << "        ";
-		}
-		else
-		{
+		break;
+	case 4:
 			cout << " |     |";
-		}
-	}
-	cout << endl << "\t";
-	for (int i = 0;i < card_amount;i++)
-	{
-		if (pointer == i + 1)
-		{
-			SetConsoleTextAttribute(hConsole, pointed_color_card);
-		}
-		else
-		{
-			SetConsoleTextAttribute(hConsole, default_color_card);
-		}
-
-		if (Hand[i].card_id == 0)
-		{
-			cout << "        ";
-		}
-		else
-		{
+		break;
+	case 5:
 			cout << " |";
 			if (Hand[i].card_type == 1)
 			{
@@ -274,27 +333,9 @@ void rysuj_karty(int pointer)
 			{
 				cout << "     ";
 			}
-			cout << "|";
-		}
-	}
-	cout << endl << "\t";
-	for (int i = 0;i < card_amount;i++)
-	{
-		if (pointer == i + 1)
-		{
-			SetConsoleTextAttribute(hConsole, pointed_color_card);
-		}
-		else
-		{
-			SetConsoleTextAttribute(hConsole, default_color_card);
-		}
-
-		if (Hand[i].card_id == 0)
-		{
-			cout << "        ";
-		}
-		else
-		{
+			cout << "|";		
+		break;
+	case 6:
 			cout << " |";
 			switch (Hand[i].card_row)
 			{
@@ -312,50 +353,17 @@ void rysuj_karty(int pointer)
 				break;
 			}
 			cout << "|";
-		}
-	}
-	cout << endl << "\t";
-	/*middle end*/
-	
-
-	for (int i = 0;i < card_amount;i++)//id karty
-	{
-		if (pointer == i + 1)
-		{
-			SetConsoleTextAttribute(hConsole, pointed_color_card);
-		}
-		else
-		{
-			SetConsoleTextAttribute(hConsole, default_color_card);
-		}
-
-		if (Hand[i].card_id == 0)
-		{
-			cout << "        ";
-		}
-		else
-		{
+		break;
+	case 7:
 			cout << " " << ld << "-----" << pd;
-		}
+		break;
+	case 8:
+		cout << " " << "  " << setw(2) << i + 1 << "   ";
+		break;
 	}
-	cout << endl << "\t";
-	for (int i = 0;i < card_amount;i++)//bottom
-	{
-		if (pointer == i + 1)
-		{
-			SetConsoleTextAttribute(hConsole, pointed_color_card);
-		}
-		else
-		{
-			SetConsoleTextAttribute(hConsole, default_color_card);
-		}
-
-		
-			cout << " " << "  " <<setw(2)<< i + 1 << "   ";
-		
-	}
-	cout << endl;
+	}//else
 }
+#pragma endregion
 
 void rysuj_szereg(int szereg_output)
 {
@@ -469,6 +477,8 @@ int game_location(int pointer)
 	int key_pressed{};
 	key_pressed = _getch();
 
+	bool card_played = false;
+
 	switch (key_pressed)
 	{
 	case '1':
@@ -484,20 +494,25 @@ int game_location(int pointer)
 	case '0'://karta nr 10
 		return 10;//inaczej nie dziala
 	case 13:
-		Play_card(pointer-1);
+		card_played=Play_card(pointer-1,0);
+		if (card_played == true)
+		{
+			Ai_turn();
+		}
 		return pointer;
 	case 45://karta nr 11
 		return 11;
 	case 61://karta nr 12
 		return 12;
-
+	case 'p'://karta nr PASS
+		return 13;
 	case 75://72 to cyfra okreslajaca strzalek w gore
 		if (pointer > 1)
 		{
 			return pointer - 1;
 		}
 	case 77://strzalek w dol
-		if (pointer < 12)
+		if (pointer < 13)
 		{
 			return pointer + 1;
 		}
@@ -513,15 +528,43 @@ int game_location(int pointer)
 	}
 }
 
-void Play_card(int n)
+bool Play_card(int n, int player_id)
 {
-	Hand[n].card_id = 0;
-	int liczba = szereg [Hand[n].card_row].actual_id;
+	if (n == 12)
+	{
+		Play_pass();
+	}
+	else
+	{ 
+		cards *whos_hand = Hand;
+		if (player_id == 3)
+		{		
+			whos_hand = Hand_ai;
+		}
+
+		//check exist
+		if (whos_hand[n].card_id == 0)
+		{
+			return false;
+		}
+
+		
+		whos_hand[n].card_id = 0;
+	int liczba = szereg[whos_hand[n].card_row+player_id].actual_id;
 	//wstawienie karty
-	szereg[Hand[n].card_row].row_cards[liczba].card_id = 1;
-	szereg[Hand[n].card_row].row_cards[liczba].card_power = Hand[n].card_power;
-	szereg[Hand[n].card_row].actual_id++;
+	szereg[whos_hand[n].card_row + player_id].row_cards[liczba].card_id = 1;
+	szereg[whos_hand[n].card_row + player_id].row_cards[liczba].card_power = Hand[n].card_power;
+	szereg[whos_hand[n].card_row + player_id].actual_id++;
+	}
+	return true;
 }
+
+void Play_pass()
+{
+	check_round_results();
+}
+
+
 
 int suma_sil(int szereg_output,int card_amount)
 {
@@ -531,4 +574,36 @@ int suma_sil(int szereg_output,int card_amount)
 		suma = suma + szereg[szereg_output].row_cards[i].card_power;
 	}
 	return suma;
+}
+
+void check_round_results()
+{
+	int player_POWER = 0;
+	int ai_POWER = 0;
+
+	for (int i = 1;i <= 3;i++)
+	{
+		player_POWER += suma_sil(i, 12);
+	}
+
+	for (int i = 1;i <= 3;i++)
+	{
+		ai_POWER += suma_sil(i+3, 12);
+	}
+	
+
+	if (player_POWER > ai_POWER)
+	{
+		victory_screen();
+	}
+	else
+	if (player_POWER == ai_POWER)
+	{
+		tie_screen();
+	}
+	else
+	if (player_POWER < ai_POWER)
+	{
+		defeat_screen();
+	}
 }

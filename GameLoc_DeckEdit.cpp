@@ -6,6 +6,7 @@ using namespace std;
 
 void GameLoc_DeckEdit()
 {
+	system("cls");
 	cout << "Hello DeckEdit" << endl;
 	system("pause");
 }

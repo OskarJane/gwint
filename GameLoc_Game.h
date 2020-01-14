@@ -39,8 +39,13 @@ int game_location(int);
 
 //game_render
 void rysuj_karty(int);
+void draw_pass(int, int);
+void draw_card(int, int, int);
+
 void rysuj_szereg(int);
 int suma_sil(int,int);
 
 //game_mechanics
-void Play_card(int);
+bool Play_card(int,int);
+void Play_pass();
+void check_round_results();

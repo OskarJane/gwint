@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <windows.h>
-
+#include <ctime>
 
 
 #include"GameLoc_Menu.h"
@@ -15,9 +15,11 @@ void Play_Music();
 
 int main()
 {
+	srand(time(NULL));
 	//Play_Music();
 	if(GameLoc_MENU()==-1)
 	{
+		system("cls");
 		return 0;
 	}
 
