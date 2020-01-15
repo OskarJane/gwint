@@ -44,8 +44,10 @@ void draw_card(int, int, int);
 
 void rysuj_szereg(int);
 int suma_sil(int,int);
+int suma_sil_ALL(int);
 
 //game_mechanics
 bool Play_card(int,int);
 void Play_pass();
 void check_round_results();
+void clear_board();

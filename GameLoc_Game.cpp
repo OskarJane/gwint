@@ -88,7 +88,7 @@ row_board szereg[6]=
 	{row[12],0},
 	{row[12],0}
 };
-
+int lives[2] = { 2,2 };
 
 void GameLoc_Game()
 {
@@ -136,15 +136,28 @@ void game_render(int pointer)
 	SetConsoleTextAttribute(hConsole, 7);
 
 
-	for (int i = 0;i < 8;i++)
+	for (int i = 0;i < 7;i++)
 	{
 		cout <<endl;
 	}
+
+	
+	cout << endl;
+
+	cout <<endl;
 	for (int i = 6;i >= 4;i--)
 	{
 		rysuj_szereg(i);
 	}
 
+	//lifes/ai
+	cout <<"\t"<<"Zycia: ";
+	for (int i = 0;i < lives[1];i++)
+	{
+		cout << "(X) ";
+
+	}
+	cout << "\t\t" << "Suma AI_POWER: " << suma_sil_ALL(3);
 	cout << endl;
 
 	SetConsoleTextAttribute(hConsole, 120);
@@ -155,6 +168,14 @@ void game_render(int pointer)
 	cout << endl;//Polowa stolu
 	SetConsoleTextAttribute(hConsole, 7);
 
+	//lifes/player
+	cout << "\t" << "Zycia: ";
+	for (int i = 0;i < lives[0];i++)
+	{
+		cout <<"(X) ";
+		
+	}
+	cout << "\t\t" << "Suma Pl_POWER: " << suma_sil_ALL(0);
 	cout << endl;
 
 	for (int i = 1;i <= 3;i++)
@@ -532,6 +553,11 @@ bool Play_card(int n, int player_id)
 {
 	if (n == 12)
 	{
+		if (player_id == 3)
+		{
+			cout << "AI has passed" << endl;
+			system("pause");
+		}
 		Play_pass();
 	}
 	else
@@ -571,7 +597,20 @@ int suma_sil(int szereg_output,int card_amount)
 	int suma = 0;
 	for (int i = 0;i < card_amount;i++)
 	{
-		suma = suma + szereg[szereg_output].row_cards[i].card_power;
+		if (szereg[szereg_output].row_cards[i].card_id != 0)
+		{
+			suma = suma + szereg[szereg_output].row_cards[i].card_power;
+		}
+	}
+	return suma;
+}
+
+int suma_sil_ALL(int player_id)
+{
+	int suma{};
+	for (int i = 1;i <= 3;i++)
+	{
+		suma=suma+suma_sil(i + player_id, 12);
 	}
 	return suma;
 }
@@ -594,16 +633,48 @@ void check_round_results()
 
 	if (player_POWER > ai_POWER)
 	{
-		victory_screen();
+		lives[1]--;
 	}
 	else
 	if (player_POWER == ai_POWER)
 	{
-		tie_screen();
+		lives[1]--;
+		lives[0]--;
 	}
 	else
 	if (player_POWER < ai_POWER)
 	{
-		defeat_screen();
+		lives[0]--;
 	}
+
+	if (lives[0] == 0 && lives[1] == 0)
+		{
+			tie_screen();
+		}
+	else
+		if(lives[1]==0)
+		{
+			victory_screen();
+		}
+	else
+		if (lives[0] == 0)
+		{
+			defeat_screen();
+		}
+
+	clear_board();
+}
+
+void clear_board()
+{
+	for(int j=0;j<=6;j++)
+	{ 
+		for (int i = 0;i < 12;i++)
+		{
+			szereg[j].row_cards[i].card_id = 0;
+			szereg[j].row_cards[i].card_power = 0;
+		}
+		szereg[j].actual_id = 0;	
+	}
+
 }
