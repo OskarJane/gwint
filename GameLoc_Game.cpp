@@ -8,6 +8,8 @@
 #include"END_screens.h"
 #include"GameLoc_Options.h"
 
+#pragma comment(lib, "winmm.lib") //systemowe biblioteki/ SHORTCUT- to ma byc żeby muzyka grala
+
 using namespace std;
 
 #pragma region znaki_zmienne.
@@ -134,12 +136,17 @@ row_board szereg[6]=
 	{row[12],0,false},
 	{row[12],0,false}
 };
+
+#pragma region dane_gry.
 int lives[2] = { 2,2 };
 int who_passes[2] = { 0,0 };
-
+#pragma endregion
 
 void GameLoc_Game()
 {
+	Play_Music();
+
+
 	game_Resolution();
 	if (check_option(1) == true)
 	{
@@ -158,6 +165,11 @@ void GameLoc_Game()
 	{
 		game_render(game_pointer);
 		game_pointer = game_location(game_pointer);
+
+		if (check_option(3) == true)
+		{
+			sortowanie_reki();
+		}
 	}
 
 }
@@ -1052,4 +1064,25 @@ void OPCJE_dodaj_pogode()
 	{
 		Hand[i] = Pogoda[i-9];
 	}
+}
+
+void sortowanie_reki()
+{
+	for (int i = 0;i < 12;i++)
+	{
+		if (Hand[i].card_id == 0)
+		{
+			for (int j = i;j < 11;j++)
+			{
+				Hand[j] = Hand[j + 1];
+				Hand[j + 1].card_id = 0;
+			}
+		}
+	}
+}
+
+
+void Play_Music()
+{
+	PlaySound(TEXT("Gwent_soundtrack_1.wav"), NULL, SND_ASYNC | SND_LOOP);
 }

@@ -7,14 +7,16 @@
 
 using namespace std;
 
-options_options Option_menu[3] =
+options_options Option_menu[4] =
 {
 	//1
-	{"       Karty AI","Licznik","Wizualizacja",0,"\t\tLicznik redukuje miganie!"},
+	{"       Karty AI","Licznik","Wizualizacja",0,"\tLicznik redukuje miganie!"},
 	//2
-	{"Dobieranie Kart","Tryb Challenge","Losowanie z talii",0,"\t\tLosowanie nie jest zbalansowane!"},
+	{"Dobieranie Kart","Tryb Challenge","Losowanie z talii",0,"\tLosowanie nie jest zbalansowane!"},
 	//3
-	{"Efekty pogodowe","Nie","Tak",0,"\t\tDaje graczowi karty pogodowe!"}
+	{"Efekty pogodowe","Nie","Tak",0,"\tDaje graczowi karty pogodowe!"},
+	//4
+	{"     Sortowanie","Nie","Do Lewej",0,"\tKarty gracza ukladaja sie obok siebie!"}
 };
 
 
@@ -41,7 +43,7 @@ void options_render(int pointer)
 
 
 	cout << "\t\t\tOPCJE" << endl;
-	for (int i = 0;i < 3;i++)
+	for (int i = 0;i < 4;i++)
 	{
 		SetConsoleTextAttribute(hConsole, 7);
 	
@@ -96,7 +98,7 @@ int options_location(int pointer)//sterowanie po menu
 		}
 		return pointer;
 	case 80://strzalek w dol
-		if (pointer < 2)
+		if (pointer < 3)
 		{
 			return pointer + 1;
 		}

@@ -61,5 +61,9 @@ void clear_board();
 bool INFO_player_pass();
 int INFO_ai_lifes();
 
+//opcje
 void losuj_karty();
 void OPCJE_dodaj_pogode();
+void sortowanie_reki();
+
+void Play_Music();

@@ -51,4 +51,12 @@
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="Muzyka\Gwent_Toss_a_coin.wav">
+      <Filter>Pliki zasobów</Filter>
+    </Media>
+    <Media Include="C:\Users\Argush\Music\Gwent_soundtrack_1.wav">
+      <Filter>Pliki zasobów</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

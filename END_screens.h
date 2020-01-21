@@ -9,3 +9,5 @@ void victory_screen();
 void tie_screen();
 
 void defeat_screen();
+
+void Play_Music_victory();

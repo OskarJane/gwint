@@ -2,6 +2,9 @@
 #include<iostream>
 #include<windows.h>
 
+
+#pragma comment(lib, "winmm.lib") //systemowe biblioteki/ SHORTCUT- to ma byc ¿eby muzyka grala
+
 using namespace std;
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -77,6 +80,9 @@ void tie_screen()
 
 void victory_screen()
 {
+	Play_Music_victory();
+
+
 	SetConsoleTextAttribute(hConsole, 10);
 	system("cls");
 
@@ -96,4 +102,10 @@ void victory_screen()
 	cout << endl << "Nacisnij ENTER aby wyjsc z programu" << endl;
 	cin.get();
 	exit(1);
+}
+
+void Play_Music_victory()
+{
+	PlaySound(NULL, 0, 0);
+	PlaySound(TEXT("Gwent_Toss_a_coin.wav"), NULL, SND_ASYNC | SND_LOOP);
 }
