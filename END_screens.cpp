@@ -33,6 +33,7 @@ void END_Resolution()//Ten kod odpowiedzialny jest tylko i wylacznie za ustawien
 
 void defeat_screen()
 {
+
 	SetConsoleTextAttribute(hConsole, 4);
 	system("cls");
 
@@ -106,6 +107,5 @@ void victory_screen()
 
 void Play_Music_victory()
 {
-	PlaySound(NULL, 0, 0);
 	PlaySound(TEXT("Gwent_Toss_a_coin.wav"), NULL, SND_ASYNC | SND_LOOP);
 }

@@ -964,7 +964,7 @@ int suma_sil_ALL(int player_id)
 
 void check_round_results()
 {
-	cout <<endl<< "Obydwaj gracze spasowali - nacisnij dowolny klawisz aby rozstrzygnac ture" << endl;
+	cout <<endl<< "Obydwaj gracze spasowali - nacisnij ENTER aby rozstrzygnac ture" << endl;
 	cin.get();
 
 	int player_POWER = 0;
