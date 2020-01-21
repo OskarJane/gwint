@@ -30,6 +30,7 @@ struct row_board
 {
 	cards row_cards[12];
 	int actual_id;
+	bool is_efect;
 };
 
 void GameLoc_Game();
@@ -39,8 +40,12 @@ int game_location(int);
 
 //game_render
 void rysuj_karty(int);
+void rysuj_karty_ai();
 void draw_pass(int, int);
 void draw_card(int, int, int);
+void draw_card_blank(int, int, int);
+
+int licznik_kart_ai();
 
 void rysuj_szereg(int);
 int suma_sil(int,int);
@@ -48,6 +53,13 @@ int suma_sil_ALL(int);
 
 //game_mechanics
 bool Play_card(int,int);
-void Play_pass();
+void Play_pass(int);
 void check_round_results();
 void clear_board();
+
+//info to ai
+bool INFO_player_pass();
+int INFO_ai_lifes();
+
+void losuj_karty();
+void OPCJE_dodaj_pogode();

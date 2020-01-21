@@ -6,26 +6,94 @@ using namespace std;
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-void victory_screen()
+void END_Resolution()//Ten kod odpowiedzialny jest tylko i wylacznie za ustawienie wysokosci i szerokosci terminala
 {
-	SetConsoleTextAttribute(hConsole, 7);
-	system("cls");
-	cout << "You have WON" << endl;
-	system("pause");
-}
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 
-void tie_screen() 
-{
-	SetConsoleTextAttribute(hConsole, 7);
-	system("cls");
-	cout << "It's a TIE"<< endl;
-	system("pause");
+	COORD a;
+	a.X = 0;
+	a.Y = 0;
+
+	SMALL_RECT rect;
+	rect.Top = 0;
+	rect.Left = 0;
+	rect.Bottom = 10;
+	rect.Right = 75;
+
+
+	SetConsoleScreenBufferSize(handle, a);
+
+	SetConsoleWindowInfo(handle, 1, &rect);
+
+
 }
 
 void defeat_screen()
 {
-	SetConsoleTextAttribute(hConsole, 7);
+	SetConsoleTextAttribute(hConsole, 4);
 	system("cls");
-	cout << "You have LOST" << endl;
-	system("pause");
+
+	END_Resolution();
+	
+	cout << " (    (        )               (                 )          " << endl;
+	cout<<	" )\\ ) )\\ )  ( /(       (       )\\ )    (      ( /(   (      " << endl;
+	cout << "(()/((()/(  )\\()) (    )\\ )   (()/(    )\\     )\\())  )\\      " << endl;
+	cout << " /(_))/(_))((_)\\  )\\  (()/(    /(_))((((_)(  ((_)\\((((_)(    " << endl;
+	cout << "(_)) (_))   _((_)((_)  /(_))_ (_))   )\\ _ )\\  _((_))\\ _ )\\  " << endl;
+	cout << "| _ \\| _ \\ |_  / | __|(_)) __|| _ \\  (_)_\\(_)| \\| |(_)_\\(_) " << endl;
+	cout << "|  _/|   /  / /  | _|   | (_ ||   /   / _ \\  | .` | / _ \\   " << endl;
+	cout << "|_|  |_|_\\ /___| |___|   \\___||_|_\\  /_/ \\_\\ |_|\\_|/_/ \\_\\  " << endl;
+
+	SetConsoleTextAttribute(hConsole, 7);
+	
+	cout << endl << "Nacisnij ENTER aby wyjsc z programu" << endl;
+	cin.get();
+	exit(1);
+}
+
+void tie_screen() 
+{
+	
+	SetConsoleTextAttribute(hConsole, 9);
+	system("cls");
+	
+	END_Resolution();
+
+	cout << " (           *     (    (     " << endl;
+	cout << " )\\ )      (  `    )\\ ) )\\ )  " << endl;
+	cout << "(()/( (    )\\))(  (()/((()/(  " << endl;
+	cout << " /(_)))\\  ((_)()\\  /(_))/(_)) " << endl;
+	cout << "(_)) ((_) (_()((_)(_)) (_))   " << endl;
+	cout << "| _ \\| __||  \\/  ||_ _|/ __|  " << endl;
+	cout << "|   /| _| | |\\/| | | | \\__ \\  " << endl;
+	cout << "|_|_\\|___||_|  |_||___||___/ " << endl;
+
+	SetConsoleTextAttribute(hConsole, 7);
+
+	cout << endl << "Nacisnij ENTER aby wyjsc z programu" << endl;
+	cin.get();
+	exit(1);
+}
+
+void victory_screen()
+{
+	SetConsoleTextAttribute(hConsole, 10);
+	system("cls");
+
+	END_Resolution();
+
+	cout << "               )          (                 )          " << endl;
+	cout << " (  (       ( /(  (       )\\ )    (      ( /(   (      " << endl;
+	cout << " )\\))(   '  )\\()) )\\ )   (()/(    )\\     )\\())  )\\     " << endl;
+	cout << "((_)()\\ )  ((_)\\ (()/(    /(_))((((_)(  ((_)\\((((_)(   " << endl;
+	cout << "_(())\\_)()__ ((_) /(_))_ (_))   )\\ _ )\\  _((_))\\ _ )\\  " << endl;
+	cout << "\\ \\((_)/ /\\ \\ / /(_)) __|| _ \\  (_)_\\(_)| \\| |(_)_\\(_) " << endl;
+	cout << " \\ \\/\\/ /  \\ V /   | (_ ||   /   / _ \\  | .` | / _ \\   " << endl;
+	cout << "  \\_/\\_/    |_|     \\___||_|_\\  /_/ \\_\\ |_|\\_|/_/ \\_\\ " << endl;
+
+	SetConsoleTextAttribute(hConsole, 7);
+
+	cout << endl << "Nacisnij ENTER aby wyjsc z programu" << endl;
+	cin.get();
+	exit(1);
 }

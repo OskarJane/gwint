@@ -4,19 +4,16 @@
 
 #include"GameLoc_Menu.h"
 #include"GameLoc_Options.h"
-#include"GameLoc_DeckEdit.h"
 #include"GameLoc_Game.h"
 
 
-menu_options Main_menu[4] =
+menu_options Main_menu[3] =
 {
 	//1
 	{"Graj"},
 	//2
-	{"Edytuj Talie"},
-	//3
 	{"Opcje"},
-	//4
+	//3
 	{"Wyjscie"}
 };
 
@@ -65,7 +62,7 @@ void menu_render(int pointer)//rysowanie menu
 	SetConsoleTextAttribute(hConsole, 7);
 
 	//menu options
-	for (int i = 0;i < 4;i++)
+	for (int i = 0;i < 3;i++)
 	{
 		if (pointer == i + 1)
 		{
@@ -124,8 +121,9 @@ int menu_location(int pointer)//sterowanie po menu
 		{
 			return pointer - 1;
 		}
+		return pointer;
 	case 80://strzalek w dol
-		if (pointer < 4)
+		if (pointer < 3)
 		{
 			return pointer + 1;
 		}
@@ -144,12 +142,9 @@ int Porusz_menu(int opcja)
 		GameLoc_Game();
 		return 1;
 	case 2:
-		GameLoc_DeckEdit();
-		return 1;
-	case 3:
 		GameLoc_Options();
 		return 1;
-	case 4:
+	case 3:
 		return -1;
 		break;
 	}

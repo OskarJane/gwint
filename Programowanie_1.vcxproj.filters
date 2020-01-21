@@ -24,9 +24,6 @@
     <ClCompile Include="GameLoc_Options.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="GameLoc_DeckEdit.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="GameLoc_Game.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
@@ -42,9 +39,6 @@
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="GameLoc_Options.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="GameLoc_DeckEdit.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="GameLoc_Game.h">

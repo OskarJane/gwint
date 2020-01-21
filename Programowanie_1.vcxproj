@@ -154,7 +154,6 @@
     <ClCompile Include="Programowanie_1.cpp" />
     <ClCompile Include="GameLoc_Menu.cpp" />
     <ClCompile Include="GameLoc_Options.cpp" />
-    <ClCompile Include="GameLoc_DeckEdit.cpp" />
     <ClCompile Include="GameLoc_Game.cpp" />
     <ClCompile Include="Game_ai.cpp" />
     <ClCompile Include="END_screens.cpp" />
@@ -162,7 +161,6 @@
   <ItemGroup>
     <ClInclude Include="GameLoc_Menu.h" />
     <ClInclude Include="GameLoc_Options.h" />
-    <ClInclude Include="GameLoc_DeckEdit.h" />
     <ClInclude Include="GameLoc_Game.h" />
     <ClInclude Include="Game_ai.h" />
     <ClInclude Include="END_screens.h" />

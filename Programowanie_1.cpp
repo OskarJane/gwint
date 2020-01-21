@@ -15,8 +15,9 @@ void Play_Music();
 
 int main()
 {
+
 	srand(time(NULL));
-	//Play_Music();
+	Play_Music();
 	if(GameLoc_MENU()==-1)
 	{
 		system("cls");

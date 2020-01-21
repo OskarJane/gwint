@@ -1,9 +1,3 @@
-﻿  GameLoc_Game.cpp
-D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(13,11): warning C4309: "inicjowanie": obcięcie stałej wartości
-D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(14,11): warning C4309: "inicjowanie": obcięcie stałej wartości
-D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(15,11): warning C4309: "inicjowanie": obcięcie stałej wartości
-D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(16,11): warning C4309: "inicjowanie": obcięcie stałej wartości
-D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(18,19): warning C4309: "inicjowanie": obcięcie stałej wartości
-D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(19,18): warning C4309: "inicjowanie": obcięcie stałej wartości
-D:\Programowanie_1\Programowanie_1\GameLoc_Game.cpp(21,19): warning C4309: "inicjowanie": obcięcie stałej wartości
+﻿  Programowanie_1.cpp
+D:\Programowanie_1\Programowanie_1\Programowanie_1.cpp(19,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   Programowanie_1.vcxproj -> D:\Programowanie_1\Programowanie_1\Debug\Programowanie_1.exe
