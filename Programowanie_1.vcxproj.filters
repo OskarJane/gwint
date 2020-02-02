@@ -58,8 +58,5 @@
     <Media Include="Muzyka\Gwent_soundtrack_1.wav">
       <Filter>Pliki zasobów</Filter>
     </Media>
-    <Media Include="C:\Users\Argush\Music\Gwent_Start2.wav">
-      <Filter>Pliki zasobów</Filter>
-    </Media>
   </ItemGroup>
 </Project>

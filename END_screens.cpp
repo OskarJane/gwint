@@ -81,7 +81,7 @@ void tie_screen()
 
 void victory_screen()
 {
-	Play_Music_victory();
+	//Play_Music_victory();
 
 
 	SetConsoleTextAttribute(hConsole, 10);

@@ -166,7 +166,6 @@
     <ClInclude Include="END_screens.h" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="C:\Users\Argush\Music\Gwent_Start2.wav" />
     <Media Include="Muzyka\Gwent_soundtrack_1.wav" />
     <Media Include="Muzyka\Gwent_Toss_a_coin.wav" />
   </ItemGroup>

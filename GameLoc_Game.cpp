@@ -30,9 +30,9 @@ int default_color_card = 14;
 #pragma endregion
 cards Pogoda[3] =
 {
-	{1,2,0,1},
-	{2,2,0,2},
-	{3,2,0,3}
+	{1,2,5,1},
+	{2,2,3,2},
+	{3,2,1,3}
 };
 
 cards Deck[30] =
@@ -144,7 +144,7 @@ int who_passes[2] = { 0,0 };
 
 void GameLoc_Game()
 {
-	Play_Music();
+	//Play_Music();
 
 
 	game_Resolution();
@@ -504,7 +504,7 @@ void draw_card_blank(int linia, int pointer, int i)
 		SetConsoleTextAttribute(hConsole, default_color_card);
 	}
 
-	if (Hand[i].card_id == 0 && linia != 8)
+	if (Hand_ai[i].card_id == 0 && linia != 8)
 	{
 		cout << "        ";
 	}
